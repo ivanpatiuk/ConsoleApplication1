@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Texts">
+      <UniqueIdentifier>{73b7507d-c8a1-425a-8241-eb23d5df0682}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,6 +36,9 @@
     <ClCompile Include="TextTraining.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TextLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ConsoleInterface.h">
@@ -50,5 +56,34 @@
     <ClInclude Include="TextTraining.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TextLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="zapovit.txt">
+      <Filter>Texts</Filter>
+    </Text>
+    <Text Include="contra_spem_spero.txt">
+      <Filter>Texts</Filter>
+    </Text>
+    <Text Include="batkivshchyna.txt">
+      <Filter>Texts</Filter>
+    </Text>
+    <Text Include="blakyt.txt">
+      <Filter>Texts</Filter>
+    </Text>
+    <Text Include="malenka_vkrayinochka.txt">
+      <Filter>Texts</Filter>
+    </Text>
+    <Text Include="zhyttya.txt">
+      <Filter>Texts</Filter>
+    </Text>
+    <Text Include="zhyttya_ne_boyusya.txt">
+      <Filter>Texts</Filter>
+    </Text>
+    <Text Include="reve_ta_stohne.txt">
+      <Filter>Texts</Filter>
+    </Text>
   </ItemGroup>
 </Project>

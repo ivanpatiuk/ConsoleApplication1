@@ -131,6 +131,7 @@
     <ClCompile Include="CombinationTraining.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ConsoleInterface.cpp" />
+    <ClCompile Include="TextLoader.cpp" />
     <ClCompile Include="TextTraining.cpp" />
     <ClCompile Include="Training.cpp" />
   </ItemGroup>
@@ -138,8 +139,19 @@
     <ClInclude Include="CharTraining.h" />
     <ClInclude Include="CombinationTraining.h" />
     <ClInclude Include="ConsoleInterface.h" />
+    <ClInclude Include="TextLoader.h" />
     <ClInclude Include="TextTraining.h" />
     <ClInclude Include="Training.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="batkivshchyna.txt" />
+    <Text Include="blakyt.txt" />
+    <Text Include="contra_spem_spero.txt" />
+    <Text Include="malenka_vkrayinochka.txt" />
+    <Text Include="reve_ta_stohne.txt" />
+    <Text Include="zapovit.txt" />
+    <Text Include="zhyttya.txt" />
+    <Text Include="zhyttya_ne_boyusya.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

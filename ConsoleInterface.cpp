@@ -4,6 +4,7 @@
 #include "ConsoleInterface.h"
 #include "CharTraining.h"
 #include "CombinationTraining.h"
+#include "TextTraining.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ void ConsoleInterface::start() {
 	int input;
 	do {
 		printMenu(); // вивести меню-підказку
-		input = getIntInput(1, 4); // отримати опцію меню (число від 1 до 4)
+		input = getIntInput(0, 3); // отримати опцію меню (число від 1 до 4)
 		switch (input) {
 		case 1: // почати тренування з символами
 			CharTraining::openTraining(); 
@@ -25,8 +26,9 @@ void ConsoleInterface::start() {
 			CombinationTraining::openTraining();
 			break;
 		case 3: // почати тренування з текстом
+			TextTraining::openTraining();
 			break;
-		case 4: // завершити роботу програми
+		case 0: // завершити роботу програми
 			exit(0);
 		}
 	} while (true);
@@ -41,7 +43,7 @@ void ConsoleInterface::printMenu() {
 	cout << "| (1) Розпочати тренування з символами     |" << endl;
 	cout << "| (2) Розпочати тренування з комбінаціямии |" << endl;
 	cout << "| (3) Розпочати тренування з творами       |" << endl;
-	cout << "| (4) Завершити виконання програми         |" << endl;
+	cout << "| (0) Завершити виконання програми         |" << endl;
 	cout << "--------------------------------------------" << endl;
 }
 

@@ -53,9 +53,10 @@ void CharTraining::openTraining() {
 	Функція запуску тренування на введення комбінацій
 */
 void CharTraining::startTraining() {
-	int inputs = 0; // кількість введних символів
-	int chars_count = 50; // кількість символів
+	cout << "Введіть кількість символів для тренування в межах [5;100]" << endl;
+	int chars_count = ConsoleInterface::getIntInput(5, 100); // кількість символів
 	int matched_chars = 0; // кількість правильно введених символів
+	int inputs = 0; // кількість введних символів
 	char input; // введений символ 
 	char generated; // згенерований символ
 	long long time_to_enter = 5000; // початковий час на введення 5 секунд
@@ -65,22 +66,23 @@ void CharTraining::startTraining() {
 	bool on_time = false;
 	do {
 		system("CLS"); // очистити консоль
-		if (on_time) {
-			if (inputs != 0) {
-				if (previous_match) {
+		if (inputs != 0) { // якщо не перший ввід
+			if (on_time) { // якщо вчасно
+				if (previous_match) { // якщо правильний ввід
 					cout << "Попереднє введення: ПРАВИЛЬНО" << endl;
 				}
-				else {
+				else { // якщо неправильний ввід
 					cout << "Попереднє введення: НЕПРАВИЛЬНО, введено '" << input << "', очікувалося '" << generated << "'" << endl;
 				}
 			}
-			else {
-				cout << endl;
+			else { // якщо невчасно
+				cout << "Попередній символ був введений невчасно" << endl;
 			}
 		}
-		else {
-			cout << "Попередній символ був введений невчасно" << endl;
+		else { // якщо перший ввід
+			cout << endl;
 		}
+
 		high_resolution_clock::time_point before = high_resolution_clock::now(); // запам'ятати час до введення
 		srand(time(NULL)); // потрібно для правильного випадкового генерування
 		generated = VOCABULARY[rand() % 72]; // взяти будь який символ з словника 
@@ -91,56 +93,22 @@ void CharTraining::startTraining() {
 
 		spent_time = floor<milliseconds>(after - before).count(); // порахувати час введення
 		total_enter_time += spent_time; // збільшити загальний час введення
-		if (time_to_enter > spent_time) {
+		if (time_to_enter > spent_time) { // якщо вчасний ввід
 			on_time = true;
-			if (input == generated) { // якщо вчасно введено і правильно, збільшити лічильник
-				// правильних введень
-				previous_match = true;
-				matched_chars += 1;
+			if (input == generated) { // якщо правильно
+				previous_match = true; // встановити маркер, що попередній ввід був правильний
+				matched_chars += 1; // збільшити кількість правильно введених букв на 1
 			}
-			else {
-				previous_match = false;
+			else { // якщо не правильно
+				previous_match = false; // встановити маркер, що попередній ввід був неправильний
 			}
 		}
-		else {
-			on_time = false;
+		else { // якщо невчасний ввід
+			on_time = false; // встановити маркер, що попередній ввід був невчасний
 		}
 		time_to_enter *= 0.965; // зменшити час на введення на 3,5%
 	} while (inputs < chars_count); // робити до тих пір, поки кількість введень не досягне 50
 
 	Training::printResults(matched_chars, chars_count, total_enter_time); // вивести результати
 }
-
-/*
-	Функція виведення результатів
-*/
-//void CharTraining::printResults(int matched_chars, int total_chars, long long total_enter_time) {
-//	system("CLS"); // очистити консоль
-//	// вивести точність за формулою (правильне введення) / 50 * 100%
-//	// вивести рівень за критеріями кількості правильних введень: 
-//	//         [0,9] - новачок, 	
-//	//         [10,24] - продвинутий, 
-//	//         [25,40] - Механічні пальці, 
-//	//         [41,50] - Штучний інтелект
-//	cout << "--------------------------------------------------------------------------" << endl;
-//	cout << "| Результати:                                                            |" << endl;
-//	cout << "|                                                                        |" << endl;
-//	cout << "| Точність: " << setw(5) << setprecision(5) << 100.0 * matched_chars / total_chars << "%" << setw(56) << "|" << endl;
-//	cout << "| Рівень: ";
-//	if (matched_chars < 10) {
-//		cout << setw(10) << "Новачок :(";
-//	}
-//	else if (matched_chars < 25) {
-//		cout << setw(10) << "Продвинутий -_-";
-//	}
-//	else if (matched_chars < 41) {
-//		cout << setw(10) << "Механічні пальці :)";
-//	}
-//	else {
-//		cout << setw(10) << "Штучний інтелект О_О";
-//	}
-//	cout << "                                                     |" << endl;
-//	cout << "| Середній час введення букви (мілісекунд): " << setw(15) << setprecision(5) << left<< total_enter_time / total_chars << setw(15) << "|" << endl;
-//	cout << "--------------------------------------------------------------------------" << endl;
-//}
 

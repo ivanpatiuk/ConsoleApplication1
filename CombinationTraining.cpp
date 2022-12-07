@@ -53,8 +53,9 @@ void CombinationTraining::openTraining() {
 	Функція запуску тренування на введення комбінацій
 */
 void CombinationTraining::startTraining() {
+	cout << "Введіть кількість комбінацій для тренування в межах [5;100]" << endl;
+	int combinations_count = ConsoleInterface::getIntInput(5, 100); // кількість символів
 	int inputs = 0; // кількість введних комбінацій
-	int combinations_count = 25; // кількість букв комбінацій
 	int total_chars = 0;
 	int matched_chars = 0; // кількість правильно введених комбінацій
 	char input_char;
@@ -70,7 +71,7 @@ void CombinationTraining::startTraining() {
 
 		high_resolution_clock::time_point before = high_resolution_clock::now(); // запам'ятати час до введення
 		generated = generateCombination(); // згенерувати комбінацію
-		if (inputs != 0) { // якщо не перший ввід
+		if (total_chars != 0) { // якщо не перший ввід (при першому вводі загальна кількість букв == 0)
 			if (on_time) { // якщо вчасно
 				if (previous_match) { // якщо правильний ввід
 					cout << "Попереднє введення: ПРАВИЛЬНО" << endl;
