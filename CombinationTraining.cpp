@@ -63,6 +63,7 @@ void CombinationTraining::startTraining() {
 	string generated; // згенерована комбінація
 	long long time_to_enter = 5000; // початковий час на введення 5 секунд
 	long long spent_time; // витрачений час на введення комбінації
+	long long total_allowed_time = 0; // загальний лозволений час вводу всіх символів
 	long long total_enter_time = 0; // загальний час вводу всіх комбінацій
 	bool previous_match = false;
 	bool on_time = false;
@@ -115,45 +116,13 @@ void CombinationTraining::startTraining() {
 		else { // встановити прапорець чи вчасний ввід false
 			on_time = false;
 		}
+		total_allowed_time += time_to_enter;
 		total_chars += generated.length();
 		time_to_enter *= 0.985; // зменшити час на введення на 1,5%
 	} while (inputs < combinations_count); // робити до тих пір, поки кількість введень не досягне 50
 
-	Training::printResults(matched_chars, total_chars, total_enter_time); // вивести результати
+	Training::printResults(matched_chars, total_chars, total_enter_time, total_allowed_time); // вивести результати
 }
-
-/*
-	Функція виведення результатів
-*/
-//void CombinationTraining::printResults(int matched_chars, int total_chars, long long total_enter_time) {
-//	system("CLS"); // очистити консоль
-//	// вивести точність за формулою (правильне введення) / 25 * 100%
-//	// вивести рівень за критеріями кількості правильних введень: 
-//	//         [0,4] - новачок, 	
-//	//         [5,14] - продвинутий, 
-//	//         [15,20] - Механічні пальці, 
-//	//         [21,25] - Штучний інтелект
-//	cout << "--------------------------------------------------------------------------" << endl;
-//	cout << "| Результати:                                                            |" << endl;
-//	cout << "|                                                                        |" << endl;
-//	cout << "| Точність: " << setw(5) << setprecision(5) << 100.0 * matched_chars / total_chars << "%" << setw(56) << "|" << endl;
-//	cout << "| Рівень: ";
-//	if (matched_chars < 5) {
-//		cout << setw(10) << "Новачок :(";
-//	}
-//	else if (matched_chars < 15) {
-//		cout << setw(10) << "Продвинутий -_-";
-//	}
-//	else if (matched_chars < 20) {
-//		cout << setw(10) << "Механічні пальці :)";
-//	}
-//	else {
-//		cout << setw(10) << "Штучний інтелект О_О";
-//	}
-//	cout << "                                                     |" << endl;
-//	cout << "| Середній час введення букви (мілісекунд): " << setw(15) << setprecision(5) << left << total_enter_time / total_chars << setw(15) << "|" << endl;
-//	cout << "--------------------------------------------------------------------------" << endl;
-//}
 
 /*
 	Функція генерації рандомної комбінації від 2 до 5 символів

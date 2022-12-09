@@ -12,5 +12,5 @@ public:
 	virtual	void printMenu() = 0;
 	virtual void openTraining() = 0;
 	virtual void startTraining() = 0;
-	static const void printResults(int matched_chars, int total_chars, long long total_enter_time);
+	static const void printResults(int matched_chars, int total_chars, long long total_enter_time, long long total_allowed_time);
 };

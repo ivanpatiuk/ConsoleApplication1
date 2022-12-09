@@ -121,6 +121,7 @@ void TextTraining::startTraining() {
 	string generated; // згенероване речення
 	long long time_to_enter = 20000; // початковий час на введення 20 секунд
 	long long spent_time; // витрачений час на введення речення
+	long long total_allowed_time = 0; // загальний лозволений час вводу всіх символів
 	long long total_enter_time = 0; // загальний час вводу всіх речень
 	long long additional_time;
 	bool previous_match = false; // для перевірки чи попередній ввід був правильний
@@ -187,11 +188,12 @@ void TextTraining::startTraining() {
 		else { // встановити прапорець чи вчасний ввід false
 			on_time = false;
 		}
+		total_allowed_time += time_to_enter;
 		total_chars += generated.length(); // збільшити загальну кількість введених символів
 		time_to_enter *= 0.95; // зменшити час на введення на 5%
 	} while (inputs < sentence_count); // робити до тих пір, поки кількість введень не досягне 15
 
-	Training::printResults(matched_chars, total_chars, total_enter_time); // вивести результати
+	Training::printResults(matched_chars, total_chars, total_enter_time, total_allowed_time); // вивести результати
 }
 
 /*
@@ -214,6 +216,7 @@ void TextTraining::startTrainingWithTexts() {
 	string next_sentence; // наступне речення з твору
 	long long time_to_enter; // початковий час на введення (залежить від довжини речення)
 	long long spent_time; // витрачений час на введення речення
+	long long total_allowed_time = 0; // загальний лозволений час вводу всіх символів
 	long long total_enter_time = 0; // загальний час вводу всіх букв
 	bool previous_match = false; // для перевірки чи попередній ввід був правильний
 	bool on_time = false; // для перевірки чи попередній ввід був вчасний
@@ -267,10 +270,11 @@ void TextTraining::startTrainingWithTexts() {
 		else { // встановити прапорець чи вчасний ввід false
 			on_time = false;
 		}
+		total_allowed_time += time_to_enter;
 		total_chars += next_sentence.length(); // збільшити загальну кількість введених символів
 	} 
 
-	Training::printResults(matched_chars, total_chars, total_enter_time); // вивести результати
+	Training::printResults(matched_chars, total_chars, total_enter_time, total_allowed_time); // вивести результати
 	text_file.close(); // закриття файлу твору
 }
 

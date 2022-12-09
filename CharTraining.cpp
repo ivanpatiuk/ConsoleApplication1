@@ -61,6 +61,7 @@ void CharTraining::startTraining() {
 	char generated; // згенерований символ
 	long long time_to_enter = 5000; // початковий час на введення 5 секунд
 	long long spent_time; // витрачений час на введення комбінації
+	long long total_allowed_time = 0; // загальний лозволений час вводу всіх символів
 	long long total_enter_time = 0; // загальний час вводу всіх символів
 	bool previous_match = false;
 	bool on_time = false;
@@ -106,9 +107,10 @@ void CharTraining::startTraining() {
 		else { // якщо невчасний ввід
 			on_time = false; // встановити маркер, що попередній ввід був невчасний
 		}
+		total_allowed_time += time_to_enter;
 		time_to_enter *= 0.965; // зменшити час на введення на 3,5%
 	} while (inputs < chars_count); // робити до тих пір, поки кількість введень не досягне 50
 
-	Training::printResults(matched_chars, chars_count, total_enter_time); // вивести результати
+	Training::printResults(matched_chars, chars_count, total_enter_time, total_allowed_time); // вивести результати
 }
 

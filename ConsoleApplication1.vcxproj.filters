@@ -85,5 +85,8 @@
     <Text Include="reve_ta_stohne.txt">
       <Filter>Texts</Filter>
     </Text>
+    <Text Include="test.txt">
+      <Filter>Texts</Filter>
+    </Text>
   </ItemGroup>
 </Project>
